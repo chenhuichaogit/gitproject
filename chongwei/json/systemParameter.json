@@ -1,0 +1,14 @@
+{
+    "cmsName": "layui后台管理模版",
+    "version": "1.0.0",
+    "author": "chc",
+    "homePage": "page/index.html",
+    "server": "windows",
+    "dataBase": "8.00.2039",
+    "maxUpload": "2M",
+    "userRights": "总管理员",
+    "description": "沃能后台管理页面",
+    "powerby": "copyright @2017",
+    "record": "京ICP备14040xxx号-1",
+    "keywords": "layui"
+}

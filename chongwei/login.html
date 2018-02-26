@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8"/>
+    <title>粤沃科技新能源汽车主动充维管理系统</title>
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+</head>
+<body>
+      <div class="container">
+      	<img src="images/loginbg.jpg" class="bg"/>
+                <div class="login-boxStyle" id="loginStyle">
+		            <div class="login-box-logo">
+		                <img src="images/login_logo.png" />
+		            </div>
+                    <div class="ui-form-item loginUsername">
+                       <input type="userName" id="uName" placeholder="用户名" />
+                    </div>
+                    <div class="ui-form-item loginPassword">
+                        <input type="password" id="uPwd" placeholder="请输入密码" />
+                    </div>
+                    <div class="remember">
+                        <input type="checkbox" id="remember_pwd" /><label for="remember_pwd">记住用户名和密码</label>
+                    </div>
+                    <div class="ui-form-item">
+                        <a class="btnStyle btn-register" id="btnLogin" onclick="Login()">立即登录</a>
+                    </div>
+                    <div class="div_bottom"></div>
+                </div>
+            <input id="passTxt" type="hidden" runat="server" />
+            
+    </div>
+    
+    
+</body>
+        <script type="text/javascript">
+        $(function () {
+            document.onkeydown = function (e) {
+                e = e || window.event;
+                var kc = e.keyCode || e.which;
+                switch (kc) {
+                    case 13:
+                        $("#btnLogin").click();
+                        return false;
+                    default:
+                        break;
+                }
+            }
+        });
+         
+        function Login() {
+
+            $("#btnLogin").attr("disabled", "disabled");
+            var u = $.trim($("#uName").val());
+            var p = hex_md5($.trim($("#uPwd").val()));
+
+            if (u == "") {
+                showTips("请输入你的账号！");
+                $("#uName").focus();
+                $("#btnLogin").removeAttr("disabled");
+                return false;
+            }else if (p == "") {
+                showTips("请输入你的账号密码！");
+                $("#uPwd").focus();
+                $("#btnLogin").removeAttr("disabled");
+                return false;
+            } else {
+                $.ajax({
+                    type: "POST",
+                    url: "/handler/System/Loginhandle.ashx",
+                    data: { LoginName: u, Password: p },
+                    dataType: "json",
+                    success: function (data) {
+                      
+                        if (data.success) {
+                            location.href="/MainPage.aspx"
+                        } else {
+                            showTips(data.msg);
+                        }
+                    },
+                    error: function () {
+       
+                        showTips("服务器异常，稍后再试！");
+              
+                    },
+                    complete: function () {
+                        $("#btnLogin").removeAttr("disabled");
+                    }
+                });
+            }
+        }
+        function reset() {
+            $("#uName").val("");
+            $("#uPwd").val("");
+        }
+
+        function showTips(msg) {
+            alert(msg);
+        }
+
+        if (document.all("passTxt").value != "") {
+            showTips(document.all("passTxt").value);
+            document.all("passTxt").value = "";
+        }
+
+
+
+
+    </script>
+</html>
