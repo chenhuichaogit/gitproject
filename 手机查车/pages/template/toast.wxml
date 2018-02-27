@@ -1,0 +1,3 @@
+<template name="toast">
+    <text  wx:if="{{toast}}" class="page-toast slide-bottom">{{toast}}</text>
+</template>

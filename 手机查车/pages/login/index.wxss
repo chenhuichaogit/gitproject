@@ -1,0 +1,158 @@
+/* login.wxss */
+
+.page-body {
+  position: relative;
+}
+
+.reg-box {
+  padding: 45rpx 5%;
+  width: 90%;
+  height: calc(100% - 45rpx);
+}
+
+.login-box {
+  padding-top: 45rpx;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.login-box .logo {
+  display: block;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 0 auto 15rpx;
+  border-radius: 12px;
+}
+
+.login-box .logo-text {
+  display: block;
+  width: calc(100% - 1.5rem);
+  margin: 0 auto 35rpx;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5rem;
+  padding-left: 0.5rem;
+  color: #3179e2;
+}
+
+.weui-input {
+  background-color: #fff;
+  padding: 10rpx 25rpx 0 100rpx;
+  box-shadow: 0 2px 2rpx rgba(0, 0, 0, 0.05);
+  border-radius: 5rpx;
+  height: 32px;
+}
+
+.reg-box .weui-input {
+  padding-left: 25rpx;
+}
+
+.page-section icon, .page-section .error {
+  position: absolute;
+  left: 32rpx;
+  top: 8rpx;
+  color: #888;
+  z-index: 100;
+}
+
+.page-section .error {
+  font-size: 24rpx;
+  color: #e64340;
+  left: auto;
+  right: 32rpx;
+  top: 16rpx;
+  line-height: 1.6;
+}
+
+.btn-login {
+  background: -webkit-linear-gradient(left, #3a87ed 0%, #42a6ee 35%, #4ac6ee 100%);
+  /* box-shadow: 0 0 12rpx rgba(58, 136, 238, 0.55); */
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: -apple-system-font, Helvetica Neue, sans-serif;
+  margin-top: 60rpx;
+}
+
+.btn-reg {
+  box-shadow: 0 0 12rpx rgba(58, 136, 238, 0.05);
+  font-size: 14px;
+  font-weight: 700;
+  font-family: -apple-system-font, Helvetica Neue, sans-serif;
+  margin-top: 44rpx;
+  color: #3179e2 !important;
+  border: 1px solid #3179e2;
+}
+
+.btn-reg::after {
+  content: none;
+}
+
+.weui-cell {
+  padding: 35rpx 0;
+  float: left;
+}
+
+.weui-cell::before {
+  border: none;
+}
+
+.weui-cell:last-child {
+  float: right;
+}
+
+.logo-company image {
+  position: fixed;
+  width: 107px;
+  height: 26px;
+  left: 50%;
+  bottom: 25rpx;
+  margin-left: -54px;
+}
+
+.contact-service {
+  position: fixed;
+  width: 120px;
+  /* height: 28px; */
+  left: 50%;
+  bottom: 96px;
+  margin-left: -60px;
+  background: -webkit-linear-gradient(left, #ffb42b 0%, #ff9815 35%, #fe6320 100%);
+}
+
+.reg-title {
+  margin-bottom: 25px;
+}
+
+.title {
+  padding-left: 24rpx;
+  font-weight: 700;
+  line-height: 32px;
+}
+
+.reg-title > image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+  display: block;
+}
+
+.reg-title > text {
+  width: 100%;
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.reg-box .page-section {
+  margin-bottom: 0;
+}
+
+.reg-close {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  z-index: 100;
+}

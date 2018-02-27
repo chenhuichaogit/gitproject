@@ -1,0 +1,36 @@
+<view class='layout-tips-box'>
+  <progress percent="{{idTimer}}" stroke-width="2" activeColor='#2ea2fd' />
+  <view class='page-section'>
+    <view class='vehicleNo'>
+      <image src='{{VehicleInfo.icon}}' class='icon'></image> {{VehicleInfo.VehicleNo}}</view>
+    <view class='timer'>最后定位时间:
+      <br/> {{VehicleInfo.GpsDateTime}}</view>
+  </view>
+  <view class='page-section'>
+    <view class='p'>
+      <image src='/img/seacrh_company_n.png' class='icon2'></image> {{VehicleInfo.Name}}
+    </view>
+    <view class='p'>
+      <image src='/img/checkcar_state_icon.png' class='icon2'></image>
+      <view style='float:left;margin-right:8rpx' class='{{VehicleInfo.color}}'>{{VehicleInfo.VehicleStatus}}</view>
+      <image src='{{VehicleInfo.ComIco}}' class='icon2'></image>
+      <image src='{{VehicleInfo.GpsIco}}' class='icon2'></image>
+      <view class='speed' wx:if="{{VehicleInfo.Speed >0}}">
+        <text>{{VehicleInfo.Speed}}</text>Km/h</view>
+    </view>
+    <view class='p'>
+      <image src='/img/checkcar_site_icon.png' class='icon2'></image> {{VehicleInfo.Address}}
+    </view>
+  </view>
+
+</view>
+
+<map id="{{mapId}}" longitude="{{owner.longitude}}" latitude="{{owner.latitude}}" controls="{{controls}}" scale="{{owner.zlevel}}" markers="{{markers}}" polyline="{{polyline}}" bindcontroltap="controltap" show-location></map>
+
+<view class='detail-tab'>
+  <view data-vehicleno='{{VehicleInfo.VehicleNo}}' data-step='info' bindtap='toDetail'>基本信息</view>
+  <view data-vehicleno='{{VehicleInfo.VehicleNo}}' data-step='mileage' bindtap='toDetail'>里程统计</view>
+  <view data-vehicleno='{{VehicleInfo.VehicleNo}}' data-step='alerm' bindtap='toDetail'>报警信息</view>
+  <view data-vehicleno='{{VehicleInfo.VehicleNo}}' data-step='history' bindtap='toDetail'>历史轨迹</view>
+  <view data-vehicleno='{{VehicleInfo.VehicleNo}}' data-step='photos' bindtap='toDetail' wx:if="{{Camera}}">照片墙</view>
+</view>

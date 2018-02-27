@@ -1,0 +1,20 @@
+<form bindsubmit="formSubmit" report-submit="true">
+<view class="container">
+			<view class="input-list">
+        <view class="input-item">
+          <text class="input-item-icon iconfont icon-shouji"></text>
+          <view class="input-item-content">
+              <input name="mobile" style='height:80rpx;' bindinput='userNameInput' type="number" maxlength="11" placeholder="请填写您的手机号" confirm-type="next" />
+            </view>
+          </view>
+          <view class="input-item">
+            <text class="input-item-icon iconfont icon-mima"></text>
+            <view class="input-item-content iphone-message">
+              <input name="iphonecode" bindinput='bindKeyInput' style='height:80rpx;' type="number" placeholder="请输入短信验证码" />
+            </view>
+            <button formType="submit" disabled='{{disabled}}' class="iphone-message-send {{sendmsg}}" bindtap="sendmessg">{{time==-2?getmsgsuccess:getmsg}}</button>
+          </view>
+          <view class='input-item' style='justify-content: flex-end;color:#D7B28E'>*验证手机号后可联系发布人</view>
+			</view>
+</view>
+</form>

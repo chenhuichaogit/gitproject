@@ -1,0 +1,16 @@
+<view class='history-card'>
+  <view>
+    <image src='/img/photowall_list_site.png' class='icon-pin'></image> {{photoData.Address}}
+  </view>
+  <view style='border-bottom:1px solid #dfdfdf'>
+    <span class="timer">{{photoData.StartTime}}至{{photoData.EndTime}}</span>
+    <span class="fr">{{photoData.ImageTotal}}张</span>
+  </view>
+
+  <view class='photo-list'>
+    <view wx:for="{{photoData.ImageUrlZoom}}" wx:key="{{index}}">
+      <image src='{{item}}' lazy-load="true" mode="widthFix" data-index='{{index}}' bindtap='previewImage'></image>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,426 @@
+/* pages/car/intro.wxss */
+
+page {
+  background-color: #eeeff4;
+}
+
+.fr {
+  float: right;
+}
+
+.layout-scroll {
+  height: calc(100% - 76px);
+}
+
+.layout-info-card {
+  width: 90%;
+  background-color: #fff;
+  border-radius: 4rpx;
+  margin: 5px 2.5%;
+  padding: 2.5%;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.05);
+  display: inline-block;
+  position: relative;
+}
+
+.layout-info-card > .list {
+  line-height: 1.9;
+  display: flex;
+}
+
+.layout-info-card > .title {
+  line-height: 18px;
+  height: 18px;
+  font-weight: normal;
+  padding-left: 15rpx;
+  border-left: 4px solid #3179e2;
+}
+
+.layout-info-card  strong {
+  width: 35%;
+  text-align: right;
+  font-weight: 700;
+  display: block;
+}
+
+.layout-info-card  span {
+  width: 65%;
+  display: block;
+}
+
+.container > canvas {
+  width: 100%;
+  height: 300px;
+}
+
+/* .scroll-container {
+  width: 100%;
+  height: 300px;
+}
+ */
+
+.scroll-container > .canvas {
+  width: 900px !important;
+  height: 300px !important;
+}
+
+.detail-tab {
+  width: 95%;
+  padding: 0 2.5%;
+  height: 44px;
+  line-height: 44px;
+  display: flex;
+  background-color: #f8f8f8;
+  /* margin-bottom: 12px; */
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.05);
+}
+
+.detail-tab > view {
+  flex: 1;
+  text-align: center;
+  height: 26px;
+  line-height: 26px;
+  margin-top: 9px;
+  border-radius: 13px;
+}
+
+.detail-tab > view.active {
+  background-color: #2ea2fd;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(46, 162, 253, 0.35);
+}
+
+.layout-button-group {
+  width: 95%;
+  margin: 6px 2.5%;
+  margin-top: 12px;
+  display: flex;
+  border-radius: 16px;
+  background-color: #2ea2fd;
+}
+
+.layout-button-group >button {
+  width: 33.3333%;
+  height: 32px;
+  line-height: 32px;
+  border: none;
+  font-size: 14px;
+  border-radius: 16px;
+  background-color: #2ea2fd;
+  color: #fff;
+}
+
+.layout-button-group >button.active {
+  background-color: #fff;
+  color: #2ea2fd;
+  box-shadow: 0 0 12px rgba(46, 162, 253, 0.35);
+}
+
+.layout-button-group >button::after {
+  content: none;
+}
+
+.layout-info-card  .topData {
+  display: flex;
+  text-align: center;
+  padding: 5px 15px;
+}
+
+.layout-info-card  .topData > view {
+  width: 50%;
+}
+
+.layout-info-card  .topData .num {
+  font-size: 32px;
+  font-weight: 700;
+  color: #2ea2fd;
+}
+
+.layout-info-card  .topData .num.red {
+  color: #fc6b6b;
+}
+
+.layout-date-box {
+  width: calc(100% - 30px);
+  padding: 15px;
+  border-radius: 4rpx;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.35);
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.layout-date-box .title {
+  font-weight: 700;
+  color: #2ea2fd;
+}
+
+.layout-date-box .list {
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 7px;
+}
+
+.layout-date-box .list label, .layout-date-box .list view {
+  width: 30%;
+  text-align: right;
+  float: left;
+  font-weight: 700;
+  padding: 0 5%;
+}
+
+.layout-date-box .list view {
+  width: 50%;
+  padding: 0 5%;
+  text-align: left;
+  background-color: #3179e2;
+  color: #fff;
+  border-radius: 4rpx;
+}
+
+.layout-date-box .list.right {
+  text-align: right;
+}
+
+.layout-date-box .list.right>button {
+  margin: 0 5px;
+}
+
+.layout-mask {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.55);
+  z-index: 999;
+}
+
+.mileage-list {
+  display: flex;
+  line-height: 1.5;
+}
+
+.mileage-list .oilcom {
+  width: 70%;
+  color: #7b7d87;
+  line-height: 1.95;
+}
+
+.mileage-list .oilcom .title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mileage-list .mileage {
+  width: 30%;
+  text-align: center;
+  border-left: 1px solid #dfdfdf;
+  color: #acb0ba;
+}
+
+.mileage-list .mileage .number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2ea2fd;
+}
+
+.history-list {
+  display: flex;
+}
+
+.history-list .icon {
+  width: 12%;
+  text-align: center;
+  line-height: 96px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAFCAYAAACEhIafAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjMxQkI5ODIxQ0ZFNTExRTc4MkNCRkU2RDY2ODEwM0RDIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjMxQkI5ODIyQ0ZFNTExRTc4MkNCRkU2RDY2ODEwM0RDIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MzFCQjk4MUZDRkU1MTFFNzgyQ0JGRTZENjY4MTAzREMiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MzFCQjk4MjBDRkU1MTFFNzgyQ0JGRTZENjY4MTAzREMiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4YC8HsAAAAG0lEQVR42mK6duPufyYGEPj//z8DmAUmAAIMAHbLBpAY1f8JAAAAAElFTkSuQmCC") 50% 0 repeat-y;
+}
+
+.history-list .icon image {
+  width: 44px;
+  height: 44px;
+  margin-top: 32px;
+}
+
+.history-list .info {
+  width: 88%;
+  font-size: 13px;
+}
+
+.history-list .info image {
+  width: 10px;
+  height: 10px;
+}
+
+.history-list .info .mileage {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.history-list .info .timer {
+  color: #acb0ba;
+  font-size: 12px;
+}
+
+map {
+  width: 100%;
+  height: 100%;
+}
+
+.alerm-list {
+  display: flex;
+  line-height: 1.5;
+  color: #fff;
+}
+
+.alerm-card-blue {
+  background: linear-gradient(to right, #4ac5ee 0%, #3a86ee 100%);
+  box-shadow: 0 2px 8px rgba(58, 134, 238, 0.35);
+}
+
+.alerm-card-red {
+  background: linear-gradient(to right, #fda279 0%, #f86c6c 100%);
+  box-shadow: 0 2px 8px rgba(248, 108, 108, 0.35);
+}
+
+.alerm-card-green {
+  background: linear-gradient(to right, #79e8a9 0%, #14c879 100%);
+  box-shadow: 0 2px 8px rgba(20, 200, 101, 0.35);
+}
+
+.alerm-list .title {
+  width: 45%;
+  line-height: 55px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.alerm-list .times {
+  width: 55%;
+  text-align: right;
+}
+
+.alerm-list .value {
+  display: block;
+  line-height: 32px;
+  text-align: right;
+}
+
+.alerm-list .number {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.btn-photo-switch {
+  position: fixed;
+  bottom: 35%;
+  right: 0;
+  z-index: 100;
+  width: 141rpx;
+  height: 82rpx;
+}
+
+.history-card {
+  width: 95%;
+  background-color: #fff;
+  border-radius: 4rpx;
+  margin: 5px 0;
+  padding: 2.5%;
+  box-shadow: 0 2rpx 2rpx rgba(0, 0, 0, 0.05);
+  display: inline-block;
+}
+
+.history-card .icon-pin {
+  width: 14px;
+  height: 16px;
+}
+
+.photo-list {
+  display: flex;
+  margin: 5px auto;
+}
+
+.photo-list > view {
+  width: calc(25% - 4px);
+  margin: 2px;
+}
+
+.photo-list > view image {
+  width: 100%;
+  border-radius: 4px;
+}
+
+.history-card .timer {
+  color: #acb0ba;
+}
+
+.history-card .fr {
+  color: #2ea2fd;
+  font-weight: 700;
+}
+
+.list  .icon2 {
+  width: 14px;
+  height: 14px;
+  margin-right: 10px;
+}
+
+.ex-detail-state {
+  display: inline-block;
+  width: 100%;
+}
+
+.ex-detail-state > view {
+  width: 25%;
+  text-align: center;
+  display: block;
+  margin: 5px 0;
+  float: left;
+}
+
+.ex-detail-state view > text {
+  width: 100%;
+  font-size: 13px;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #585858;
+}
+
+.ex-detail-state view >i {
+  font-size: 32px;
+  color: #dfdfdf;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.ex-detail-state view >i.green {
+  background-color: #46b54b;
+  color: #fff !important;
+}
+
+.status-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.list-error {
+  text-align: center;
+  /* margin-top: 45%; */
+  color: #acb0ba;
+  position: fixed;
+  top: 45%;
+  width: 100%;
+}
+
+.list-error image {
+  width: 122rpx;
+  height: 101rpx;
+}

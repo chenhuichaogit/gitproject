@@ -1,0 +1,315 @@
+<import src="../template/toast.wxml" />
+<template is="toast" data="{{toast: errorMsg}}" />
+
+<!--pages/car/intro.wxml-->
+<view class='detail-tab'>
+  <view class='{{tabactive[0]}}' data-step='info' bindtap='toStep'>基本信息</view>
+  <view class='{{tabactive[1]}}' data-step='mileage' bindtap='toStep'>里程统计</view>
+  <view class='{{tabactive[2]}}' data-step='alerm' bindtap='toStep'>报警信息</view>
+  <view class='{{tabactive[3]}}' data-step='history' bindtap='toStep'>历史轨迹</view>
+  <view class='{{tabactive[4]}}' data-step='photos' bindtap='toStep' wx:if="{{Camera}}">照片墙</view>
+</view>
+
+<view wx:if="{{step === 'info'}}" style='height:calc(100% - 56px);overview:hidden;'>
+  <scroll-view scroll-y="true" style='height:100%;'>
+
+
+    <view class='layout-info-card'>
+      <view class='title'>车辆信息</view>
+      <view class="list">
+        <strong>车牌号：</strong>
+        <span>{{VehicleNo}}</span>
+      </view>
+      <view class="list">
+        <strong>在线状态：</strong>
+        <span>{{DeviceStatus.DeviceStatusStr}}
+          <image src='/img/i_mobile_open.png' class='icon2' wx:if="{{(DeviceStatus.ConectStatus)}}"></image>
+          <image src='/img/i_mobile_off.png' class='icon2' wx:else></image>
+          <image src='/img/i_bd_open.png' class='icon2' wx:if="{{(DeviceStatus.DWStatus)}}"></image>
+          <image src='/img/i_bd_off.png' class='icon2' wx:else></image>
+        </span>
+      </view>
+      <view class="list">
+        <strong>速 度：</strong>
+        <span>{{DeviceStatus.Speed}} km/h</span>
+      </view>
+      <view class="list">
+        <strong>设备里程：</strong>
+        <span>{{DeviceStatus.Mileage}} km</span>
+      </view>
+      <view class="list">
+        <strong>最后定位时间：</strong>
+        <span>{{DeviceStatus.LastDWTime}}</span>
+      </view>
+      <view class="list">
+        <strong>最后定位位置：</strong>
+        <span>{{DeviceStatus.SerAddress}}</span>
+      </view>
+    </view>
+
+    <view class='layout-info-card'>
+      <view class='title'>实时监控</view>
+      <progress percent="{{loadStatus}}" stroke-width="2" activeColor="#2ea2fd" class='status-progress' />
+      <view class="ex-detail-state">
+        <view wx:for='{{DeviceStatus.ssStatus}}' wx:key="">
+          <i wx:if="{{item.IsOk == 1}}" class="ex-icon {{item.AImgAddress}} green" />
+          <i wx:else="{{item.IsOk == 0}}" class="ex-icon {{item.AImgAddress}}" />
+          <text>{{item.OptionName}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class='layout-info-card'>
+      <view class='title'>企业信息</view>
+      <view wx:for="{{companyInfo}}" wx:key="{{index}}" class='list'>
+        <strong>{{item.Title}}：</strong>
+        <span wx:if="{{item.Value === null}}"> </span>
+        <span wx:else>{{item.Value}}</span>
+      </view>
+    </view>
+
+    <view class='layout-info-card'>
+      <view class='title'>当前车辆综合信息</view>
+      <view class="container">
+        <canvas canvas-id="radarCanvas" class="canvas" style='height:300px;width:100%;'></canvas>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view wx:if="{{step === 'mileage'}}" style='height:calc(100% - 56px);overview:hidden;'>
+  <view class='layout-button-group'>
+    <button type='button' class='{{groupActive[0]}}' data-index='0' bindtap='selectMeliData'>每日</button>
+    <button type='button' class='{{groupActive[1]}}' data-index='1' bindtap='selectMeliData'>每月</button>
+    <button type='button' class='{{groupActive[2]}}' data-index='2' bindtap='selectMeliData'>自定义</button>
+  </view>
+
+  <view class='layout-info-card' hidden="{{enableScroll}}">
+    <view class='topData'>
+      <view>
+        <view class='num'>
+          {{mileageTopData[0].value}}
+        </view>
+        <view>
+          {{mileageTopData[0].title}}(KM)
+        </view>
+      </view>
+      <view>
+        <view class='num red'>
+          {{mileageTopData[1].value}}
+        </view>
+        <view>
+          {{mileageTopData[1].title}}(L)
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='layout-info-card' hidden="{{enableScroll}}">
+    <text class='title'>{{mileageTopData[0].title}}里程/油耗统计</text>
+    <view class='container' style='height:200px;'>
+      <canvas canvas-id="lineCanvas" class="canvas" style='height:200px;'></canvas>
+    </view>
+  </view>
+  <view style='text-align:center;line-height:32px;font-weight:700;' bindtap='enableScroll' wx:if="{{!enableScroll}}">{{mileageTopData[0].title}}列表
+    <i class="ex-icon ex-icon-down"></i>
+  </view>
+  <view style='text-align:center;line-height:32px;font-weight:700;' bindtap='disableScroll' wx:else>{{mileageTopData[0].title}}列表
+    <i class="ex-icon ex-icon-down" style="transform:scaleY(-1);"></i>
+  </view>
+  <scroll-view scroll-y="true"  class='layout-scroll' wx:if="{{mileageData && enableScroll}}">
+  <!--bindscrolltoupper="disableScroll"  -->
+    <view class='layout-info-card' wx:for="{{mileageData}}" wx:key="{{index}}">
+      <view class='mileage-list'>
+        <view class='oilcom'>
+          <view class='title'>
+            {{item.title}}
+          </view>
+          <view>耗油量：{{item.oilcom}}L</view>
+        </view>
+        <view class='mileage'>
+          <view class='number'>
+            {{item.mileage}}
+          </view>
+          KM
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class='layout-mask' wx-if="{{dateBox}}">
+    <view class='layout-date-box'>
+      <text class='title'>自定义时间段</text>
+      <view class='list'>
+        <label>开始日期：</label>
+        <picker mode="date" value="{{mileageDate[0]}}" data-index='0' start="2015-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+          <view> {{mileageDate[0]}}</view>
+        </picker>
+      </view>
+      <view class='list'>
+        <label>结束日期：</label>
+        <picker mode="date" value="{{mileageDate[1]}}" data-index='1' start="2015-01-01" end="{{nowDate}}" bindchange="bindDateChange">
+          <view> {{mileageDate[1]}}</view>
+        </picker>
+      </view>
+      <view class='list right'>
+        <button type='default' size='mini' bindtap='cancleDate'>取消</button>
+        <button type='primary' size='mini' bindtap='submitDate'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view wx:if="{{step === 'alerm'}}" style='height:calc(100% - 56px);overview:hidden;'>
+  <view class='layout-button-group'>
+    <button type='button' class='{{groupAlermActive[0]}}' data-index='0' bindtap='selectAlermData' style='width:50%'>每日</button>
+    <button type='button' class='{{groupAlermActive[1]}}' data-index='1' bindtap='selectAlermData' style='width:50%'>自定义</button>
+  </view>
+  <view class='layout-info-card' hidden="{{enableScroll}}">
+    <text class='title'>报警总次数统计</text>
+    <view class='container' style='height:200px;'>
+      <canvas canvas-id="barCanvas" class="canvas" style='height:200px;'></canvas>
+    </view>
+  </view>
+  <view style='text-align:center;line-height:32px;font-weight:700;' bindtap='enableScroll' wx:if="{{!enableScroll}}">截止至：{{EndDateTime}}
+    <i class="ex-icon ex-icon-down"></i>
+  </view>
+  <view style='text-align:center;line-height:32px;font-weight:700;' bindtap='disableScroll' wx:else>截止至：{{EndDateTime}}
+    <i class="ex-icon ex-icon-down"></i>
+  </view>
+  <scroll-view scroll-y="true" wx:if="{{(AlermTypeListData.length > 0)}}" bindscroll="enableScroll">
+    <view class='layout-info-card {{alermCard[index]}}' data-typeid="{{item.alarmtypeid}}" data-endtime="{{EndDateTime}}" wx:for="{{AlermTypeListData}}" wx:key="{{index}}" bindtap='toAlermDetail'>
+      <view class='alerm-list'>
+        <view class='title'>
+          {{item.title}}
+        </view>
+        <view class='times'>
+          <view class='value'>
+            <em class='number'>{{item.value}}</em>次
+          </view>
+          <view>
+            共持续 {{item.timer}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='layout-mask' wx-if="{{dateBox}}">
+    <view class='layout-date-box'>
+      <text class='title'>自定义时间段</text>
+      <view class='list'>
+        <label>开始日期：</label>
+        <picker mode="date" value="{{alermDate[0]}}" data-index='0' start="2015-01-01" end="{{nowDate}}" bindchange="bindAlermDateChange">
+          <view> {{alermDate[0]}}</view>
+        </picker>
+      </view>
+      <view class='list'>
+        <label>结束日期：</label>
+        <picker mode="date" value="{{alermDate[1]}}" data-index='1' start="2015-01-01" end="{{nowDate}}" bindchange="bindAlermDateChange">
+          <view> {{alermDate[1]}}</view>
+        </picker>
+      </view>
+      <view class='list right'>
+        <button type='default' size='mini' bindtap='cancleDate'>取消</button>
+        <button type='primary' size='mini' bindtap='submitAlermDate'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{step === 'history'}}" style='height:calc(100% - 56px);overview:hidden;'>
+  <view class='layout-button-group'>
+    <button type='button' class='{{groupHistoryActive[0]}}' data-index='0' bindtap='selectHistoryData' style='width:50%'>每日</button>
+
+    <!-- <view> {{historyDate[0]}}</view> -->
+    <button type='button' class='{{groupHistoryActive[1]}}' data-index='1' bindtap='selectHistoryData' style='width:50%'>
+      <picker mode="date" value="{{historyDate}}" data-index='0' start="2015-01-01" end="{{nowDate}}" bindchange="bindHistoryDateChange">
+        <span wx:if="{{historyDate ==''}}">自定义</span>
+        <span wx:else> {{historyDate}}</span>
+      </picker>
+    </button>
+
+
+  </view>
+  <scroll-view scroll-y="true" class='layout-scroll' style='height:calc(100% - 44px);' scroll-with-animation="true">
+    <view wx:if="{{HistoryData.length <= 0}}" class="list-error">
+      <view>
+        <image src='/img/searchcar_nodata_tips.png'></image>
+      </view>
+      车辆查询无轨迹</view>
+    <view class='' wx:for="{{HistoryData}}" wx:key="{{index}}" data-start='{{item.StartDateTime}}' data-end='{{item.EndDateTime}}' data-mileage="{{item.Mileage}}" bindtap='toHistoryDetail'>
+      <view class='history-list'>
+        <view class='icon'>
+          <image src='/img/historicalroute_list_icon.png'></image>
+        </view>
+        <view class='layout-info-card info'>
+          <view class='mileage'>
+            总里程： {{item.Mileage}} KM
+            <text style='float:right;color:#acb0ba'>查看 ></text>
+          </view>
+          <view class='timer'>
+            <image src='/img/historicalroute_time_icon.png'></image> {{item.STime}} 至 {{item.ETime}}
+          </view>
+          <view class='address start'>
+            <image src='/img/trajectory_starting_point.png'></image> {{item.StartAddress}}
+          </view>
+          <view class='address end'>
+            <image src='/img/trajectory_destination.png'></image> {{item.EndAddress}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class='layout-mask' wx-if="{{dateBox}}">
+    <view class='layout-date-box'>
+      <text class='title'>自定义时间段</text>
+      <view class='list'>
+        <label>选择日期：</label>
+        <picker mode="date" value="{{historyDate}}" data-index='0' start="2015-01-01" end="{{nowDate}}" bindchange="bindHistoryDateChange">
+          <view> {{historyDate[0]}}</view>
+        </picker>
+      </view>
+      <!-- <view class='list'>
+        <label>结束日期：</label>
+        <picker mode="date" value="{{historyDate[1]}}" data-index='1' start="2015-01-01" end="{{nowDate}}" bindchange="bindHistoryDateChange">
+          <view> {{historyDate[1]}}</view>
+        </picker>
+      </view> -->
+      <view class='list right'>
+        <button type='default' size='mini' bindtap='cancleDate'>取消</button>
+        <button type='primary' size='mini' bindtap='submitHistoryDate'>确定</button>
+      </view>
+    </view>
+  </view>
+</view>
+<view wx:if="{{step === 'photos'}}" style='height:calc(100% - 44px);overview:hidden;'>
+  <view hidden='{{!photoMap}}' style='height:100%;'>
+    <image src='/img/photowall_list_backmap.png' class='btn-photo-switch' bindtap='switchPhotos'></image>
+    <view hidden='{{photoData.length > 0}}' class="list-error">
+      <view>
+        <image src='/img/searchcar_nodata_tips.png'></image>
+      </view>
+      今日没有任何照片上传！
+    </view>
+    <view wx:for="{{photoData}}" wx:key="{{index}}" class='history-card' data-index='{{index}}' bindtap='toPhotoDetail'>
+      <view>
+        <image src='/img/photowall_list_site.png' class='icon-pin'></image> {{item.Address}}</view>
+      <view class='photo-list'>
+        <view wx:for="{{item.ImageUrlsMi}}" wx:key="{{id}}" wx:for-item="i" wx:for-index="id">
+          <image src='{{i}}' lazy-load="true" mode="widthFix" wx:if="{{id < 7}}"></image>
+          <image src='/img/photowall_list_morephoto.png' lazy-load="true" mode="widthFix" wx:else></image>
+        </view>
+      </view>
+      <view style='border-top:1px solid #dfdfdf'>
+        <span class="timer">{{item.StartTime}}至{{item.EndTime}}</span>
+        <span class="fr">{{item.ImageTotal}}张</span>
+      </view>
+    </view>
+  </view>
+
+
+  <map id="myMedia" include-points="{{allPhotoPoi}}" longitude="{{owner.longitude}}" latitude="{{owner.latitude}}" markers='{{photoMarkers}}' bindmarkertap="toPhotosDetail" show-location hidden='{{photoMap}}'>
+    <cover-image src='/img/photowall_photo_list.png' class='btn-photo-switch' bindtap='switchPhotos'></cover-image>
+  </map>
+
+</view>

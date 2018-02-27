@@ -1,0 +1,132 @@
+.page-body {
+  height: 100%;
+  padding: 0 2.5%;
+}
+
+.setup-box {
+  width: 95%;
+  min-height: 60%;
+}
+
+.weui-cell {
+  display: flex;
+  width: 90%;
+  background-color: #fff;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.weui-cell .ex-icon {
+  float: right;
+}
+
+.weui-cell::before {
+  content: none;
+}
+
+.weui-cell__bd {
+  flex: 1;
+}
+
+.weui-cell__hd {
+  flex: 2;
+  font-weight: 500;
+}
+
+.btn-logout {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 4px;
+  width: 85%;
+  background: linear-gradient(to right, #4ac5ee 0%, #3a87ee 100%);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  display: inline-block;
+  margin-top: 60px;
+}
+
+.layout-platform {
+  width: 90%;
+  padding: 5%;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.platform-card {
+  width: 80%;
+  padding: 5%;
+  margin: 5%;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(to right, #d5d8dd 0%, #adb1bb 100%);
+  border-radius: 4px;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+}
+
+.platform-card.active {
+  background: linear-gradient(to right, #4ac5ee 0%, #3a87ee 100%);
+}
+
+.platform-card >image {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto;
+}
+
+.title {
+  width: 90%;
+  padding: 5%;
+  margin: 5px 0 15px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.userinfo-data-area {
+  background-color: transparent;
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 10;
+  display: flex;
+}
+
+.userinfo-data-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, #4ac5ee 0%, #3a87ee 100%);
+  padding: 0;
+  box-shadow: 0 7rpx 15rpx rgba(0, 0, 0, 0.15);
+  border: 6rpx solid rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+
+.userinfo-data-button>i {
+  font-size: 24px;
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  margin: 0 auto;
+  padding: 0;
+  line-height: 1;
+  float: none;
+}
+
+.article{
+  font-size: 24rpx;
+  line-height: 1.9
+
+}
+
+.article view{
+  margin: 7px 15px;
+}
+
+.article text {
+  color: #fe6320;
+}

@@ -1,0 +1,185 @@
+<view class='layout-search'>
+  <input class="weui-input" value='{{queryKey}}' placeholder='请输入车牌号' bindfocus='showQuery' bindinput='inputQuery' />
+  <image src='/img/icon_search.png' class='ex-icon'></image>
+  <view class='query-list' wx:if="{{hisQuery}}">
+    <view wx:for="{{hisQuery}}" wx:key="{{index}}" data-index='{{index}}' bindtap='sHisQuery'>
+      <icon type="waiting" size="14" color='#afb3bd' style='margin-top:10rpx;' /> {{item}}
+    </view>
+    <view style='text-align:center' bindtap='clearHisQuery'>清空搜索历史</view>
+  </view>
+
+
+
+
+</view>
+<view class='layout-query'>
+  <view class='query' data-type='region' bindtap='queryType'>
+    <span wx:if="{{queryCity.length <= 0 && districtName.length <= 0}}">
+      <image src='/img/seacrh_area_n.png'></image>区域</span>
+    <span wx:if="{{queryCity.length > 0 && districtName.length <= 0}}">
+      <image src='/img/seacrh_area_n.png'></image>{{queryCity}}</span>
+    <span wx:if="{{queryCity.length > 0 && districtName.length > 0}}">
+      <image src='/img/seacrh_area_n.png'></image>{{queryCity}} {{districtName}}</span>
+  </view>
+  <view class='query' data-type='enterprise' bindtap='queryType'>
+    <span>
+      <image src='/img/seacrh_company_n.png'></image>企业</span>
+    <em wx:if="{{queryEnterprise.length >0}}">{{queryEnterprise.length}}</em>
+  </view>
+  <view class='query' data-type='status' bindtap='queryType'>
+    <span>
+      <image src='/img/seacrh_state_n.png'></image>状态</span>
+    <em wx:if="{{StatusData.length >0}}">{{StatusData.length}}</em>
+  </view>
+
+</view>
+<view class='layout-total'>
+  共{{Total}}辆车
+</view>
+<scroll-view class='layout-list' scroll-y="true" upper-threshold="0" scroll-with-animation="true" enable-back-to-top="true" bindscrolltolower="loadData">
+  <!--bindscrolltoupper="freshData"  -->
+  <block wx:for="{{VehicleList}}" wx:key="{{index}}">
+    <view class='layout-tips-box' data-index="{{index}}" bindtap='toDetail'>
+      <view class='page-section'>
+        <view class='vehicleNo'>
+          <image src='/img/checkcar_online_bigcar_icon.png' class='icon' wx:if="{{(item.VehicleStatusId === 1) || (item.VehicleStatusId === 2) || (item.VehicleStatusId === 3) }}"></image>
+          <image src='/img/checkcar_communication_outage_bigcar_icon.png' class='icon' wx:if="{{(item.VehicleStatusId === 4)}}"></image>
+          <image src='/img/checkcar_locationfailure_bigcar_icon.png' class='icon' wx:if="{{(item.VehicleStatusId === 5)}}"></image>{{item.VehicleNo}}</view>
+        <view class='timer'>
+          <br/> {{item.GpsDateTime}}</view>
+      </view>
+      <view class='page-section'>
+        <view class='p'>
+          <image src='/img/seacrh_company_n.png' class='icon2'></image> {{item.Name}}
+        </view>
+        <view class='p'>
+          <image src='/img/checkcar_state_icon.png' class='icon2'></image>
+          <view style='float:left;margin-right:8rpx' class='green' wx:if="{{(item.VehicleStatusId === 1) || (item.VehicleStatusId === 2) || (item.VehicleStatusId === 3) }}">{{item.VehicleStatus}}</view>
+          <view style='float:left;margin-right:8rpx' class='red' wx:if="{{(item.VehicleStatusId === 4) }}">{{item.VehicleStatus}}</view>
+          <view style='float:left;margin-right:8rpx' class='gray' wx:if="{{(item.VehicleStatusId === 5) }}">{{item.VehicleStatus}}</view>
+
+          <image src='/img/i_mobile_open.png' class='icon2' wx:if="{{(item.IsComIco)}}"></image>
+          <image src='/img/i_mobile_off.png' class='icon2' wx:else></image>
+          <image src='/img/i_bd_open.png' class='icon2' wx:if="{{(item.IsGpsIco)}}"></image>
+          <image src='/img/i_bd_off.png' class='icon2' wx:else></image>
+
+          <view class='speed' wx:if="{{item.Speed >0}}">
+            <text>{{item.Speed}}</text>Km/h</view>
+        </view>
+        <view class='p'>
+          <image src='/img/checkcar_site_icon.png' class='icon2'></image> {{item.Address}}
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- <view wx:if="{{loading}}" style='text-align:center;line-height:44px;'>正在加载下一页...</view> -->
+</scroll-view>
+
+
+
+<view class='layout-region' wx:if="{{regionSelect[0]}}">
+  <view class='layout-search' style='background-color:#fff'>
+    <input class="weui-input" placeholder='请输入城市名称' bindinput='inputCity' />
+    <image src='/img/icon_search.png' class='ex-icon'></image>
+  </view>
+  <view class='title'>选择的城市</view>
+  <view class='hot-cities'>
+    <view>
+      <button type='default' size='mini' class='active' data-code='{{queryCode}}'>{{queryCity}}</button>
+    </view>
+    <view>{{districtName}}</view>
+
+    <button type='primary' size='mini' bindtap='querySubmit' class='btnSubmit'> 确定</button>
+
+  </view>
+  <scroll-view class='layout-region-scroll' scroll-y="true">
+    <view class='title' hidden='{{searchCity}}'>城市行政区</view>
+    <view class='hot-cities' hidden='{{searchCity}}'>
+      <view>
+        <button type='default' class='{{btnActive[999]}}' size='mini' data-index='999' data-code='{{queryCode}}' data-name='' bindtap='selectDistrict'>全部</button>
+      </view>
+      <view wx:for="{{DistrictList}}" wx:key="{{item.Spelling}}">
+        <button class='{{btnActive[index]}}' type='default' size='mini' data-index='{{index}}' data-code='{{item.Code}}' data-name='{{item.Name}}区' bindtap='selectDistrict'>{{item.Name}}</button>
+      </view>
+    </view>
+
+    <view class='title' hidden='{{searchCity}}'>热门城市</view>
+    <view class='hot-cities' hidden='{{searchCity}}'>
+      <view>
+        <button type='default' size='mini' data-name='' data-code='' bindtap='selectCity'>全部城市</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='武汉市' data-code='420100' bindtap='selectCity'>武汉市</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='北京市' data-code='110100' bindtap='selectCity'>北京市</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='长沙市' data-code='430100' bindtap='selectCity'>长沙市</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='郴州市' data-code='431000' bindtap='selectCity'>郴州市</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='呼和浩特' data-code='150100' bindtap='selectCity'>呼和浩特</button>
+      </view>
+      <view>
+        <button type='default' size='mini' data-name='深圳市' data-code='440300' bindtap='selectCity'>深圳市</button>
+      </view>
+    </view>
+
+    <view class='cities-list'>
+      <view wx:if="{{cities <= 0}}" style='text-align:center;line-height:300px'>查询无结果</view>
+      <view wx:for="{{cities}}" data-code='{{item.Code}}' data-name='{{item.Name}}' wx:key="{{item.Spelling}}" class='region-list' bindtap='selectCity'>{{item.Name}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+
+<view class='layout-region' wx:if="{{regionSelect[1]}}">
+  <view class='layout-search' style='background-color:#fff'>
+    <input class="weui-input" value='{{enterpriseKey}}' placeholder='请输入企业名称' bindinput='inputEnterprise' />
+    <image src='/img/icon_search.png' class='ex-icon'></image>
+  </view>
+  <view class='enterprise-query' bindtap='showQueryDetail'>
+    <span>选择的企业:</span>
+    <em wx:if="{{queryEnterprise.length >0}}">{{queryEnterprise.length}}</em>
+    <button type='primary' size='mini' bindtap='querySubmit' style='float:right'> 确定</button>
+  </view>
+  <view class='enterprise-list' wx:if="{{queryDetail}}">
+    <view wx:for="{{queryEnterprise}}" wx:key="{{item.ResourceTypeId}}" data-id='{{item.ResourceTypeId}}' bindtap='deleteQuery'>
+      {{item.ResourceTypeName}} x
+    </view>
+  </view>
+  <scroll-view class='layout-region-scroll enterprise' scroll-y="true">
+    <view class='cities-list'>
+      <view wx:if="{{enterprise <= 0}}" style='text-align:center;line-height:300px'>查询无结果</view>
+      <view wx:for="{{enterprise}}" data-id='{{item.ResourceTypeId}}' data-name='{{item.ResourceTypeName}}' wx:key="{{item.ResourceTypeId}}" data-index='{{index}}' class='region-list' bindtap='selectEnterprise'>
+        <icon type="success" size="16" color='{{enterpriseColor[index].color}}' /> {{item.ResourceTypeName}}
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class='layout-region status' wx:if="{{regionSelect[2]}}">
+  <view class='title'>车辆状态</view>
+  <view class='hot-cities'>
+    <view>
+      <button type='default' size='mini' data-index='1' class='{{btnStatusActive[1]}}' bindtap='selectStatus'>行驶车辆</button>
+    </view>
+    <view>
+      <button type='default' size='mini' data-index='2' class='{{btnStatusActive[2]}}' bindtap='selectStatus'>停车状态</button>
+    </view>
+    <view>
+      <button type='default' size='mini' data-index='3' class='{{btnStatusActive[3]}}' bindtap='selectStatus'>熄火车辆</button>
+    </view>
+    <view>
+      <button type='default' size='mini' data-index='4' class='{{btnStatusActive[4]}}' bindtap='selectStatus'>定位失败</button>
+    </view>
+    <view>
+      <button type='default' size='mini' data-index='5' class='{{btnStatusActive[5]}}' bindtap='selectStatus'>通讯中断</button>
+    </view>
+    <button type='primary' size='mini' bindtap='querySubmit'> 确定</button>
+  </view>
+
+</view>

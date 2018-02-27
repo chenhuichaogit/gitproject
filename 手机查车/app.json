@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/map/index",
+    "pages/map/carlist",
+    "pages/car/index",
+    "pages/setup/index",
+    "pages/car/intro",
+    "pages/car/track",
+    "pages/car/alerm",
+    "pages/car/media",
+    "pages/setup/test"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#f8f8f8",
+    "navigationBarTitleText": "车老板",
+    "navigationBarTextStyle": "black"
+  }
+}

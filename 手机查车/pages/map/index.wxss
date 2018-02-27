@@ -1,0 +1,130 @@
+.layout-search {
+  height: 44px;
+  line-height: 44px;
+  width: 100%;
+  background-color: #f8f8f8;
+  position: relative;
+}
+
+.layout-search  .weui-input {
+  height: 18px;
+  padding: 0 15rpx 0 55rpx;
+  background-color: #eeeff4;
+  border-radius: 16px;
+  margin: 0 6px;
+  color: #acb0ba;
+}
+
+.layout-search  .ex-icon {
+  position: absolute;
+  left: 24rpx;
+  top: 15rpx;
+  width: 20px;
+  height: 20px;
+  z-index: 10000;
+}
+
+map {
+  width: 100%;
+  height: 100%;
+}
+
+.layout-pop-wd {
+  height: 120px;
+  width: calc(100% - 10px);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 0 10px;
+}
+
+.layout-stastic-box, .layout-pop-box {
+  width: calc(100% - 10px);
+  height: 110px;
+  background-color: #fff;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  color: #7b7d87;
+  white-space: normal;
+}
+
+.layout-stastic-box  .list {
+  float: left;
+  width: 27.3333333333%;
+  height: 35px;
+  padding: 10px 3%;
+  line-height: 17.5px;
+}
+
+.layout-stastic-box  .icon {
+  width: 13px;
+  height: 22px;
+  float: left;
+  margin-right: 10px;
+  display: block;
+}
+
+.layout-stastic-box  .icon2 {
+  width: 14px;
+  height: 14px;
+  float: left;
+  margin-right: 10px;
+}
+
+.layout-stastic-box .number {
+  font-size: 32rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  float: left;
+  margin-right: 8rpx;
+  padding: 0 5rpx;
+}
+
+.layout-stastic-box .green {
+  color: #17c97b;
+}
+
+.layout-stastic-box .red {
+  color: #fc6b6b;
+}
+
+.layout-stastic-box .gray {
+  color: #acb0ba;
+}
+
+.layout-stastic-box .blue {
+  color: #3179e2;
+}
+
+.layout-stastic-box .page-section {
+  padding: 3px 10px;
+  width: calc(100% - 20px);
+  position: relative;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.layout-stastic-box .vehicleNo {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.layout-stastic-box .timer {
+  font-size: 12px;
+  color: #999;
+}
+
+.layout-stastic-box .button {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  z-index: 1000;
+  width: 120rpx;
+  height: 48rpx;
+}
+
+.layout-stastic-box  .p {
+  margin-bottom: 5rpx;
+  line-height: 1.5;
+}

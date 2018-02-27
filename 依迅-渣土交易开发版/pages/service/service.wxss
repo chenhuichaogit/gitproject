@@ -1,0 +1,287 @@
+
+.service-list{
+	padding: 0 10rpx;
+  background-color: #f7f2eb;
+}
+.service-item{
+  background-color: white;
+	display: flex;
+	padding: 4rpx 0; 
+  margin-bottom: 10rpx;
+	border-bottom: 1rpx solid #e8e8e8;
+}
+.service-item-my{
+  background-color: #EEE9E9;
+	display: flex;
+	padding: 4rpx 0; 
+  margin-bottom: 10rpx;
+	border-bottom: 1rpx solid #e8e8e8;
+}
+.service-trade{
+	width: 80rpx;
+  height: 80rpx;
+}
+.service-shop{
+  font-size: 42rpx;
+  font-weight: bolder;
+  color: white;
+  width: 70rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 50%;
+  background-color: #f7982a;
+  position: relative;
+  top:14rpx;
+  left:14rpx;
+}
+.service-gou{
+  font-size: 42rpx;
+  font-weight: bolder;
+  color: #EDA258;
+  width: 70rpx;
+  height: 70rpx;
+  text-align: center;
+  line-height: 70rpx;
+  border-radius: 50%;
+  border: 2rpx solid #EDA258;
+  background-color: #FDEAD3;
+  position: relative;
+  top:14rpx;
+  left:14rpx;
+}
+.service-img{
+  position: relative;
+  top:4rpx;
+  left:4rpx;
+}
+.service-img image{
+    width: 80rpx;
+    height: 80rpx;
+}
+.service-text{
+	flex: 1;
+	margin-left: 20rpx;
+	width: 100%;
+}
+.service-text .service-tite{
+	color: #a76e36;
+	width: 100%;
+	font-size: 28rpx;
+  font-weight: 800;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+  position: relative;
+  top: 6rpx;
+}
+.service-tags{
+	margin: 6rpx 0;
+}
+.service-city{
+	color: #8e8e8e;
+	font-size: 22rpx;
+	margin-right: 10rpx;
+	white-space: nowrap;
+}
+
+/*tab切换css  */
+ 
+.tab-show{display: block;}
+.tab-hide{display: none;}
+.add-tabing{
+  color: #da7c0c;
+  border-bottom:6rpx solid #da7c0c;
+}
+.bottom-message{
+  border-top:20rpx solid #f7f2eb; 
+	padding: 20rpx 40rpx;
+	z-index: 999;
+	background: #f9f9f9;
+}
+.bottom-message button{
+  height: 70rpx;
+  line-height: 70rpx;
+  color:white;
+  font-size: 38rpx;
+  background: #f7982a;
+}
+.message{
+  font-size: 26rpx;
+  color: #f7982a;
+  position: relative;
+  top:4rpx;
+}
+.message-num{
+  color: #a76e36;
+}
+.sea-flex{
+	display: flex;
+  justify-content: space-between;
+	padding: 14rpx 30rpx;
+	border-bottom: 1rpx solid #ddd;
+	position: relative;
+	z-index: 13;
+	background: #f7f2eb;
+}
+.search{
+  /* height:50rpx; */
+  line-height: 50rpx;
+  font-size: 50rpx;
+  color: #f7982a;
+  justify-content:flex-end;
+}
+/*弹出搜索框的样式  */
+.search-view{
+  position: relative;
+  z-index: 99999;
+  width: 100%;
+}
+.wxSearch{
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-top: 1px #FCF1E5 solid;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.wxSearchInner{
+  background-color: #fff;
+}
+.wxSearch-section{
+  background-color: #f8f8f8;
+  padding: 5px 10px;
+  border: 1px #FCF1E5 solid;
+}
+.wxSearch-pancel{
+  display: flex;
+  flex-direction: row;
+}
+.wxSearch-input{
+  height: 40rpx;
+  line-height: 40rpx;
+  flex: 8; 
+  padding: 5px 10px;
+  color: #D7C2AA;
+  margin-left:40rpx;
+  background-color:white;
+}
+.wxSearch-input-placeholder{
+    color: #E2D3C2;
+}
+
+.wxSearch-button{
+  flex: 1;
+  border: none !important;
+  color: white !important;
+  font-size: 30rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #f7982a!important;
+}
+
+.wxSearchTitle{
+  display: block;
+  padding: 10px 5px 5px 10px;
+  font-size: 12px;
+  text-align: center;
+}
+
+.wxSearchMindKeyItem{
+  padding: 10px 5px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  font-size: 14px;
+  color: cornflowerblue;
+}
+
+.wxSearchKeyList{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.wxSearchKeyItem{
+  flex: 0 0 20%;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid #eee;
+  margin: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.wxSearchHistoryItem{
+  margin: 0 30rpx;
+  padding: 10px 5px;
+  border-bottom: 1px solid #F4D6B9;
+  display: flex;
+}
+.wxSearchHistoryItemText{
+  flex: 8;
+  font-size: 14px;
+  color: #f7982a;
+}
+.wxSearchHistoryItemDel{
+  flex: 1;
+  font-size: 36rpx;
+  line-height: 48rpx;
+  text-align: center;
+  color: #f7982a;
+}
+.wxSearchHistoryEmpty{
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  font-size: 12px;
+  color: #f7982a;
+
+}
+.wxSearchDeleteAllBtn{
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 12px;
+  color: #f7982a;
+}
+/* .layout-search {
+  height: 38px;
+  line-height: 38px;
+  width: 100%;
+  background-color: #f8f8f8;
+  position: relative;
+  padding-top: 6px;
+}
+
+.layout-search  .weui-input {
+  height: 18px;
+  padding: 0 15rpx 0 55rpx;
+  background-color: #eeeff4;
+  border-radius: 16px;
+  margin: 0 6px;
+  color: #acb0ba;
+} */
+.query-list {
+  padding: 0;
+  max-height: 400px;
+  width: 100%;
+  display: inline-block;
+  position: fixed;
+  top: 260rpx;
+  left: 0;
+  z-index: 100;
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
+}
+
+.query-list > view {
+  font-size: 13px;
+  line-height: 32px;
+  border-bottom: 1px solid #eeeff4;
+  padding: 0 5%;
+}
+
+.query-list > view icon{
+  padding-top: 5px;
+}

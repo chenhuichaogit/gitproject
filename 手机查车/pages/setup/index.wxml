@@ -1,0 +1,131 @@
+<import src="../template/toast.wxml" />
+<template is="toast" data="{{toast: errorMsg}}" />
+<!--logout.wxml-->
+<view class="page-body" wx:if="{{PageIndex == 1}}">
+  <view class="setup-box">
+    <text class='title'>设置</text>
+    <view class="weui-cell " bindtap="switchPlatform">
+      <view class='weui-cell__hd'>平台切换</view>
+      <view class='weui-cell__bd'>
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell" bindtap="showContact">
+      <view class='weui-cell__hd'>联系客服</view>
+      <view class='weui-cell__bd'>
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell " bindtap="eventSetup">
+      <view class='weui-cell__hd'>权限设置</view>
+      <view class='weui-cell__bd'>
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell" bindtap="showAbout">
+      <view class='weui-cell__hd'>关于我们</view>
+      <view class='weui-cell__bd'>
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell" bindtap="removeStorage">
+      <view class='weui-cell__hd'>清除缓存</view>
+      <view class='weui-cell__bd'>
+       {{storageSize}} Mb
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell " bindtap="showFeedBack2" wx:if="{{ showDevice>= 7}}">
+      <view class='weui-cell__hd'>开发者模式</view>
+      <view class='weui-cell__bd'>
+        <i class="ex-icon ex-icon-right" />
+      </view>
+    </view>
+    <view class="weui-cell " bindtap="showFeedBack" wx:else style="background:transparent;box-shadow:none;height：80px;">
+    </view>
+  </view>
+  <view class="weui-cell btn-logout" bindtap="logOut">
+    退出登录
+  </view>
+</view>
+
+<view class="page-body" wx:if="{{PageIndex == 2}}">
+  <text class='title'>当前选择平台：{{nPlatformName}}</text>
+  <view class="layout-platform">
+    <view class='platform-card {{PlatformActive[index]}}' wx:for="{{Platform}}" wx:key="{{index}}" data-id='{{item.PlatformId}}' data-appkey='{{item.AppKey}}' data-index='{{index}}' data-name='{{item.Name}}' bindtap='selectPlatform'>
+      <image src='/img/pattern_platform_common_logo.png'></image>
+      <view>{{item.Name}}</view>
+    </view>
+  </view>
+  <!--返回按钮-->
+  <view class="userinfo-data-area">
+    <button class="userinfo-data-button" bindtap="toMap">
+      <i class="ex-icon ex-icon-back" />
+    </button>
+  </view>
+</view>
+
+<!--联系客服-->
+<view class="page-body" wx:if="{{PageIndex == 3}}">
+  <scroll-view scroll-y='true' style="height:{{winHeight   + 'px'}}">
+    <text class="title">联系客服</text>
+    <view class="setup-box weui-cells_after-title">
+      <view class="weui-cell">
+        <view class="weui-cell__bd strong">公司名称</view>
+        <view class="weui-cell__hd">
+          <span class='info-right'> 武汉依迅电子信息技术有限公司</span>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd strong">公司地址</view>
+        <view class="weui-cell__hd">
+          <span class='info-right'> 武汉武大科技园国家地球空间信息产业基地A1栋2层</span>
+        </view>
+      </view>
+      <view class="weui-cell">
+        <view class="weui-cell__bd strong">公司电话</view>
+        <view class="weui-cell__hd">
+          <span class='info-right'>
+            <text class="orange" data-phone="4008111180" bindtap="eventContact">400-811-1180</text> </span>
+        </view>
+      </view>
+
+    </view>
+    <!--返回按钮-->
+    <view class="userinfo-data-area">
+      <button class="userinfo-data-button" bindtap="toIndex">
+        <i class="ex-icon ex-icon-back" />
+      </button>
+    </view>
+  </scroll-view>
+</view>
+<!--关于施工宝-->
+<view class="page-body" wx:if="{{PageIndex == 6}}">
+  <text class="title">关于我们</text>
+  <view class="setup-box weui-cells_after-title">
+    <view style="text-indent:2em">车老板随时随地掌控车辆实时位置、运行状态、行驶里程、耗费油量、历史轨迹、报警信息，更有轨迹地图描绘、里程图表统计、信息人性化查询！--安全、免费、便捷、易用！</view>
+    <view style="text-indent:2em">武汉依迅电子信息技术有限公司（简称：依迅电子）是一家多级国有基金参股专注于北斗卫星导航应用的军民融合高新技术企业集团。主要业务涵盖国防军工、智能交通、智慧城市、精准农业四大版块；在北斗高精度组合制导、北斗原子钟授时、视觉测距与识别等领域拥有国际领先的核心技术。在美国硅谷、中国光谷分别建有研发中心，与武汉大学、武汉理工大学等高校共建“教学科研实习基地”、“博士后流动工作站”，公司现为中国国防工业军民融合产业联盟副理事长单位，军工资质、生产资质齐全，在全国拥有100多家紧密型合作伙伴及多家分子公司，市场占有率连续多年居行业之前列，连续5年被行业协会评选为中国卫星导航产业“十佳产品供应商、十佳运营服务商”。</view>
+    <!--返回按钮-->
+    <view class="userinfo-data-area">
+      <button class="userinfo-data-button" bindtap="toIndex">
+        <i class="ex-icon ex-icon-back" />
+      </button>
+    </view>
+  </view>
+</view>
+
+<!--设备信息-->
+<view class="page-body" wx:if="{{PageIndex === 7}}">
+  <view class='title'>设备信息</view>
+  <scroll-view scroll-y='true' style="height:{{winHeight - 42   + 'px'}}" style="margin-bottom:90px;">
+    <view class="setup-box weui-cells_after-title" bindtap='toTestIndex'>
+      <text class="weui-cell">{{systemInfo}}</text>
+    </view>
+    <!--返回按钮-->
+    <view class="userinfo-data-area">
+      <button class="userinfo-data-button" bindtap="toIndex">
+        <i class="ex-icon ex-icon-back" />
+      </button>
+    </view>
+  </scroll-view>
+</view>

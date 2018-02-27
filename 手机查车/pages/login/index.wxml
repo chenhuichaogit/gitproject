@@ -1,0 +1,56 @@
+<import src="../template/toast.wxml" />
+<template is="toast" data="{{toast: errorMsg}}" />
+<!--登录页面-->
+<view class="page-body">
+  <view class='login-box' wx:if="{{!regPage}}">
+    <image src="/img/login_logo.png" class="logo"></image>
+    <text class='logo-text'>车老板</text>
+    <view class="page-section">
+      <input id="Account" bindinput="bindLoginInput" type="text" value="{{loginInfo.Account}}" placeholder='请输入用户名' class="weui-input" cursor-spacing="100" />
+      <icon class="ex-icon ex-icon-user"></icon>
+      <text class="error {{shakeclass}}">{{Error[0]}}</text>
+    </view>
+    <view class="page-section">
+      <input id="Password" password="true" bindinput="bindLoginInput" type="text" value="{{loginInfo.Password}}" placeholder='请输入密码' class="weui-input" cursor-spacing="100" />
+      <icon class="ex-icon ex-icon-lock"></icon>
+      <text class="error {{shakeclass}}">{{Error[1]}}</text>
+    </view>
+    <view class="page-section">
+      <button loading="{{loading}}" type='primary' bindtap="loginEvent" class='btn-login'> 登 录 </button>
+      <button type='default' bindtap="toReg" class='btn-reg'> 申请账号 </button>
+    </view>
+  </view>
+
+  <view class='reg-box' wx:if="{{regPage}}">
+    <view class='reg-close' bindtap='toLogin'>
+      <icon type='cancel' size='32'></icon>
+    </view>
+    <view class='reg-title'>
+      <image src='/img/apply_for_account_icon.png'></image>
+      <text>申请账号</text>
+    </view>
+    <text class='title'>姓名：</text>
+    <view class="page-section">
+      <input id="Name" bindinput="bindRegInput" type="text" value="{{regInfo.Name}}" placeholder='请输入真实姓名' class="weui-input" confirm-type="提交" cursor-spacing="100" />
+      <text class="error {{shakeclass}}">{{Error[0]}}</text>
+    </view>
+    <text class='title'>手机号：</text>
+    <view class="page-section">
+      <input id="Phone" bindinput="bindRegInput" type="number" value="{{regInfo.Phone}}" placeholder='请输入手机号码' class="weui-input" confirm-type="提交" cursor-spacing="100" />
+      <text class="error {{shakeclass}}">{{Error[1]}}</text>
+    </view>
+    <text class='title'>所属单位：</text>
+    <view class="page-section">
+      <input id="Comany" bindinput="bindRegInput" type="text" value="{{regInfo.Comany}}" placeholder='请输入所属单位' class="weui-input" confirm-type="提交" cursor-spacing="100" />
+      <text class="error {{shakeclass}}">{{Error[2]}}</text>
+    </view>
+    <text class='title'>职位：</text>
+    <view class="page-section">
+      <input id="Position" bindinput="bindRegInput" type="text" value="{{regInfo.Position}}" placeholder='请输入您的职位' class="weui-input" confirm-type="提交" cursor-spacing="100" />
+      <text class="error {{shakeclass}}">{{Error[3]}}</text>
+    </view>
+    <view class="page-section">
+      <button loading="{{loading}}" type='primary' bindtap="regEvent" class='btn-login'> 提 交 </button>
+    </view>
+  </view>
+</view>

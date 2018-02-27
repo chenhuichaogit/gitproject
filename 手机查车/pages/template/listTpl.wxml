@@ -1,0 +1,65 @@
+<template name="ConstructList">
+
+
+
+
+
+
+
+
+
+
+
+
+      <view wx:if="{{ConstructList==''}}" class="list-foo" >当前没有工单</view>
+      <block wx:for='{{ConstructList}}' wx:key="{{ConstructList}}"> 
+        <navigator wx:if="{{item.OrderType == 1 }}" url="detail?ConstructId={{item.ConstructId}}&OrderStatusStr={{item.OrderStatusStr}}&OrderType={{item.OrderType}}" class="list-card card-in">
+          <view class="list-card-top">
+            <i wx:if="{{item.OrderType == 1}}" class="ex-icon ex-icon-setup yellow"></i>
+            <i wx:else="{{item.OrderType == 0}}" class="ex-icon ex-icon-fixed orange"></i>
+            <view class="list-title">
+              <view wx:if="{{item.OrderType == 1}}" class="yellow"> 安装工单 </view>
+              <view wx:else="{{item.OrderType == 0}}" class="orange"> 维修工单 </view>
+              <view  wx:if="{{item.OrderType == 1}}"  class="code yellow">(编号{{item.ConstructNo}})</view>
+              <view wx:else="{{item.OrderType == 0}}"  class="code orange">(编号{{item.ConstructNo}})</view>
+            </view>
+            <view class="list-price">
+              <span wx:if="{{item.OrderType == 1}}" class="yellow">{{item.PlanNumber}} 台</span>
+              <span wx:else="{{item.OrderType == 0}}" class="orange">{{item.PlanNumber}} 台</span>
+            </view>
+          </view>
+          <view class="list-flex">
+            <view class="list-item"><strong>单　价：</strong>{{item.AZPrice}} 元/台 </view>
+            <view class="list-item" style="width:60%;"><strong>客户名称：</strong>{{item.TenantName}}</view>
+            <view class="list-item"><strong>维修员：</strong>{{item.AppLimit}}人</view>
+            <view class="list-item" style="width:60%;"><strong>预约服务：</strong>{{item.ReleaseTime}}</view>
+            <view class="list-item" style="width:100%;"><strong>服务位置：</strong>{{item.AZAddress}}</view>
+            <view class="list-item"><strong>已完成：</strong>{{item.OverNumber}}台</view>
+          </view>
+        </navigator>
+                <navigator wx:if="{{item.OrderType == 2 }}" url="repair?ConstructId={{item.ConstructId}}&OrderStatusStr={{item.OrderStatusStr}}&OrderType={{item.OrderType}}" class="list-card card-in">
+          <view class="list-card-top">
+            <i wx:if="{{item.OrderType == 1}}" class="ex-icon ex-icon-setup yellow"></i>
+            <i wx:else="{{item.OrderType == 0}}" class="ex-icon ex-icon-fixed orange"></i>
+            <view class="list-title">
+              <view wx:if="{{item.OrderType == 1}}" class="yellow"> 安装工单 </view>
+              <view wx:else="{{item.OrderType == 0}}" class="orange"> 维修工单 </view>
+              <view  wx:if="{{item.OrderType == 1}}"  class="code yellow">(编号{{item.ConstructNo}})</view>
+              <view wx:else="{{item.OrderType == 0}}"  class="code orange">(编号{{item.ConstructNo}})</view>
+            </view>
+            <view class="list-price">
+              <span wx:if="{{item.OrderType == 1}}" class="yellow">{{item.PlanNumber}} 台</span>
+              <span wx:else="{{item.OrderType == 0}}" class="orange">{{item.PlanNumber}} 台</span>
+            </view>
+          </view>
+          <view class="list-flex">
+            <view class="list-item"><strong>单　价：</strong>{{item.AZPrice}} 元/台 </view>
+            <view class="list-item" style="width:60%;"><strong>客户名称：</strong>{{item.TenantName}}</view>
+            <view class="list-item"><strong>维修员：</strong>{{item.AppLimit}}人</view>
+            <view class="list-item" style="width:60%;"><strong>预约服务：</strong>{{item.ReleaseTime}}</view>
+            <view class="list-item" style="width:100%;"><strong>服务位置：</strong>{{item.AZAddress}}</view>
+            <view class="list-item"><strong>已完成：</strong>{{item.OverNumber}}台</view>
+          </view>
+        </navigator>
+      </block>
+</template>

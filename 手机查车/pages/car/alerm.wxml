@@ -1,0 +1,29 @@
+<map id="alermMap" include-points="{{includePoints}}" longitude="{{owner.longitude}}" latitude="{{owner.latitude}}" scale="{{owner.zlevel}}" markers="{{markers}}" polyline="{{polyline}}" show-location></map>
+
+<view class='layout-alerm-topic'>
+  <view class='alerm-list-card'>
+    <view class='icon topic-icon'>
+      <view class='icon-i'>{{alermTopic.Count}}</view>
+    </view>
+    <view class='info'>
+      <view class='title'>第{{alermTopic.Count}}次报警</view>
+      <view class='timer'>{{alermTopic.GpsDateTime}}</view>
+      <view class='location'><image src='/img/seacrh_area_n.png'></image> {{alermTopic.Address}}</view>
+      <view class='seconds'>持续{{alermTopic.Seconds}}秒</view>
+    </view>
+  </view>
+
+
+</view>
+<scroll-view scroll-y="true" class='layout-alerm-list'>
+  <view class='alerm-list-card'  data-count='{{item.Count}}'  wx:for="{{alermData}}" wx:key="{{index}}" bindtap='switchAlerm'>
+    <view class='icon'>
+      <view class='icon-i'>{{item.Count}}</view>
+    </view>
+    <view class='info'>
+      <view class='title'>第{{item.Count}}次报警</view>
+      <view class='timer'>{{item.GpsDateTime}}</view>
+      <view class='seconds'>持续{{item.Seconds}}秒</view>
+    </view>
+  </view>
+</scroll-view>

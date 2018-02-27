@@ -1,0 +1,69 @@
+<!--logs.wxml-->
+<!--富文本解析  -->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="container">
+	<view class="container-body space-content">
+    <view class='service-list'>
+      <view class="service-trade">
+        <view class="service-img">
+              <image src='{{titleImg}}'></image>
+        </view>
+      </view>
+      <view class="service-text">
+        <view class="service-tite">{{tradeInformation.TransType}}：{{tradeInformation.Title}}</view>
+        <text class="service-city">{{tradeInformation.Dist}} / {{tradeInformation.CarType}}</text>
+      </view>
+    </view>  
+	  <view class="space-top">
+      <view class="space-block">
+        <view class="space-block-title">
+          <text>详细介绍</text>
+          <view class='space-title-right'>
+            <view class='iconfont icon-time'>{{tradeInformation.CreateTime}}</view>
+            <view class='iconfont icon-fenxiang'>{{}}</view>
+            <view class='icon-position'><text class='iconfont icon-shu icon-shu-size'></text><text style='font-size:28rpx'>{{tradeInformation.ViewCount}}</text></view> 
+          </view>       
+        </view>
+        <view class="space-block-content">
+           <view class="space-passage wxParse">
+          <text>{{tradeInformation.Description}}</text>
+          </view> 
+        </view>
+      </view>
+	  	<view class="space-banner" bindtap="imgPreview" hidden="{{spaceimgs.length ? false : true }}">
+		  	<swiper autoplay="{{true}}" interval="{{4000}}" duration="{{1000}}" bindchange="setCurrent">
+		  	  <block wx:for="{{spaceimgs}}" wx:key="{{item.index}}">
+		  	    <swiper-item>
+		  	      <image src="{{item}}" mode="aspectFill" class="slide-image"/>
+		  	    </swiper-item>
+		  	  </block>
+		  	</swiper>
+	  	  <view class="number-banner">
+	  	  	<text>{{currentIndex>9?currentIndex:'0'+currentIndex}}</text>
+	  	  	<text>{{spaceimgs.length>9?spaceimgs.length:'0'+spaceimgs.length}}</text>
+	  	  </view>
+	  	</view>
+  	  <view class="space-info">
+  	  	<view class="space-list">
+          <view style='display:flex;'>
+             <map id="map" longitude="{{tradeInformation.Lng}}" latitude="{{tradeInformation.Lat}}" scale="15" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" show-location style="width: 100%; height: 300rpx;"></map>
+          </view>
+  	  		<view class="space-item" bindtap="getAddress" data-address="{{tradeInformation.Address}}" data-latitude="{{tradeInformation.Lat}}" data-longitude="{{tradeInformation.Lng}}">
+            <text class='iconfont icon-weibiaoti104' style='color:#F3B06F;'></text>
+  	  			<text class="text-left">位置：</text>
+  	  			<text class="text-right">{{tradeInformation.Address}}</text>
+  	  		</view>
+  	  	</view>
+  	  </view>
+	  </view>
+	</view>
+  <form bindsubmit="formSubmit" report-submit="true" hidden='{{messageHidden}}'>
+    <view class="container-footer" hidden="{{flag ? true : false}}">
+      <button formType="submit" class="handle-btn" bindtap="getSendMessage">我 有 兴 趣</button>
+      <button class="apply-btn" bindtap="goApply">免费发布信息</button>
+    </view>
+  </form>
+	<view class="container-footer" hidden="{{flag ? false : true }}">
+		<button class="modifySendInfo-btn" bindtap="modifySendInfo">我 要 修 改 发 布 信 息</button>
+	</view>
+</view>

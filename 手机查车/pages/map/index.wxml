@@ -1,0 +1,47 @@
+<!--地图展示页面-->
+<map id="myMap" longitude="{{owner.longitude}}" latitude="{{owner.latitude}}" controls="{{controls}}" scale="{{owner.zlevel}}" markers="{{markers}}" bindtap="clearVehicleInfo" bindmarkertap="showVehicleInfo" bindcontroltap="controltap" bindregionchange="getRegion"
+  show-location>
+  <!--include-points="{{allPoi}}"  -->
+  <cover-view class='layout-pop-wd'>
+    <cover-view class='layout-stastic-box' wx:if="{{!VehicleInfo}}">
+      <cover-view class='list' wx:for="{{VehicleStastic}}" wx:key="{{item.id}}" data-index='{{index+1}}' bindtap="toSearch">
+        <cover-image src='{{item.icon}}' class='icon'></cover-image>
+        <cover-view>{{item.Title}}</cover-view>
+        <cover-view>
+          <cover-view class="number {{item.color}}">{{item.Value}}</cover-view>
+          <cover-view>辆</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+
+    <cover-view class='layout-stastic-box' wx:else bindtap="toDetail">
+      <cover-view class='page-section'>
+        <cover-image src='{{VehicleInfo.icon}}' class='icon'></cover-image>
+        <cover-view class='vehicleNo'> {{VehicleInfo.VehicleNo}}</cover-view>
+        <cover-view class='timer'> {{VehicleInfo.GpsDateTime}}</cover-view>
+        <cover-image class='button' src='/img/checkcar_map_detail_button.png'></cover-image>
+      </cover-view>
+      <cover-view class='page-section'>
+        <cover-view class='p'>
+          <cover-image src='/img/seacrh_company_n.png' class='icon2'></cover-image>
+          <cover-view>{{VehicleInfo.Name}}</cover-view>
+        </cover-view>
+        <cover-view class='p'>
+          <cover-image src='/img/checkcar_state_icon.png' class='icon2'></cover-image>
+          <cover-view style='float:left;margin-right:8rpx' class='{{VehicleInfo.color}}'>{{VehicleInfo.VehicleStatus}}</cover-view>
+          <cover-image src='{{VehicleInfo.ComIco}}' class='icon2'></cover-image>
+          <cover-image src='{{VehicleInfo.GpsIco}}' class='icon2'></cover-image>
+        </cover-view>
+        <cover-view class='p'>
+          <cover-image src='/img/checkcar_site_icon.png' class='icon2'></cover-image>
+          <cover-view>{{VehicleInfo.Address}}</cover-view>
+        </cover-view>
+      </cover-view>
+    </cover-view>
+  </cover-view>
+
+  <cover-view class='layout-search' bindtap='toSearch'>
+    <cover-view class="weui-input">请输入车牌号</cover-view>
+    <cover-image src='/img/icon_search.png' class='ex-icon'></cover-image>
+  </cover-view>
+</map>
