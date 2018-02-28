@@ -1,0 +1,64 @@
+.input-list{
+	padding: 0 20rpx;
+	margin: 20rpx 0;
+	background: #fff;
+	border-bottom: 1rpx solid #ddd;
+}
+.input-list .input-item{
+	padding: 10rpx 20rpx;
+	line-height: 2;
+	display: flex;
+	font-size: 30rpx;
+}
+.input-list .input-item:first-child{
+	border-top: 0;
+}
+.input-item-label{
+	display: block;
+	width: 5em;
+	color: #B17E4C;
+  font-weight: bold;
+}
+.input-item-content{
+	color: #333;
+	flex:1;
+  background-color: #f7f2eb;
+  height: 80rpx;
+  text-align: 80rpx;
+}
+.iphone-message{
+  flex: 0.5
+}
+.iphone-message-send{
+  flex: 0.47;
+  background-color: #f7982a;
+  position: relative;
+  left: 20rpx;
+  text-align: center;
+  line-height: 84rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  color: white;
+  border-radius: 8rpx;
+}
+.input-item-icon{
+  color: #f7982a;
+  background-color: #f7f2eb;
+  position: relative;
+  padding: 0 20rpx;
+  height: 80rpx;
+  line-height: 85rpx
+}
+.iphone-code-num{
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  background-color: rgba(0,0,0,0.6);
+  text-align: center;
+  border-radius: 8rpx;
+  display: block;
+}
+.iphone-code-numx{
+  display: none;
+}

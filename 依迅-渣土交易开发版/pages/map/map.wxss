@@ -1,0 +1,33 @@
+.ex-mapcover{
+  position:absolute;
+  bottom:16rpx;
+  left: 2%;
+  width:96%;
+  height:140rpx;
+  border-radius: 10rpx;
+  /* background:Gainsboro; */
+  background: WhiteSmoke;
+  border:1rpx solid LightGrey;
+  font-size: 32rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.ex-map-address{
+  font-weight: 600;
+}
+.ex-map-button{
+  width: 120rpx;
+  height: 80rpx;
+  border: 1px solid silver;
+  padding: 10rpx;
+  box-sizing: border-box;
+  border-radius: 10rpx;
+  position: absolute;
+  bottom: 30rpx;
+  right: 20rpx;
+  background: Gainsboro;
+  color: black;
+  text-align: center;
+  font-size: 36rpx;
+  line-height: 60rpx;
+}

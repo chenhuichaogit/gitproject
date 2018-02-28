@@ -1,0 +1,6 @@
+<map id="myMap" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" longitude="{{olng}}" latitude="{{olat}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location style="width: 100%; height: 100%;"></map>
+<cover-view class='ex-mapcover'>
+  <cover-view>地址</cover-view>
+  <cover-view class='ex-map-address'>{{address}}</cover-view>
+  <cover-view class="ex-map-button" bindtap='getAddressClick'> 确 认</cover-view>
+</cover-view>

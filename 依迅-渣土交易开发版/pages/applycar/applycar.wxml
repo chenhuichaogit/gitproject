@@ -1,0 +1,76 @@
+<view class="container container-gray">
+  <form bindsubmit="formSubmit" bindreset="formReset">
+    <view class="group">
+      <view class="group-header">发布新信息</view>
+      <view class="group-body">
+        <view class="input-list">
+          <view class="input-item input-item-full">
+            <text class="input-item-label">选择信息类型</text>
+            <view class='input-item input-item-choose'>
+              <view class="apply-sell {{chooseType == 1?'apply-choolse':''}}" data-num = "1" bindtap='chooseMessageType'><text class="{{chooseType == 1?'choose-icon iconfont icon-icon-test':''}}"></text>出 租 车 辆</view>
+              <view class="apply-shop {{chooseType == 2?'apply-choolse':''}}" data-num = "2" bindtap='chooseMessageType'><text class="{{chooseType == 2?'choose-icon iconfont icon-icon-test':''}}"></text>租 用 车 辆</view>
+            </view>
+          </view>
+          <view hidden='{{phoneHidden}}'>
+            <view class="input-item">
+              <text class="input-item-icon iconfont icon-shouji"></text>
+              <view class="input-item-content">
+                <input name="mobile" style='height:80rpx;' bindinput='userNameInput' type="number" maxlength="11" placeholder="请填写您的手机号" confirm-type="next" />
+              </view>
+            </view>
+            <view class="input-item">
+              <text class="input-item-icon iconfont icon-mima"></text>
+              <view class="input-item-content iphone-message">
+                <input name="iphonecode" bindinput='bindKeyInput' style='height:80rpx;' type="number" placeholder="请输入短信验证码" />
+              </view>
+              <button disabled='{{disabled}}' class="iphone-message-send {{sendmsg}}" bindtap="sendmessg">{{time==-2?getmsgsuccess:getmsg}}</button>
+            </view>
+            <view class='input-item' style=' justify-content: flex-end;color:#D7B28E'>*验证手机号后即可发布信息</view>
+          </view>
+        </view>
+      </view>
+      <view class="group-body">
+        <view class="input-list">
+          <view class="input-item input-item-full">
+            <text class="input-item-label">信息标题：</text>
+            <!-- <input class='input-item-content' type="text" placeholder="请输入信息标题最多80字"></input> -->
+            <input name="title" class="input-item-content" placeholder="请输入信息标题最多80字" maxlength='80' type="text" confirm-type="next"/>
+          </view>     
+          <view class="input-item input-item-full" style='position:relative'>
+            <text class="input-item-label">车辆类型：</text>
+             <picker name="selltype" class="input-item-content input-selltype" bindchange="bindPickerChange" data-pickername="job" value="{{jobindex}}" range="{{jobarr}}" mode="selector">{{jobarr[jobindex]}}
+            </picker>
+            <text class='iconfont icon-icon-up' style='position:absolute;right:40rpx;top:70rpx;color:#f7982a;font-size:44rpx;'></text>
+          </view>     
+
+          <view class="input-item input-item-full">
+            <text class="input-item-label">信息内容：</text>
+            <textarea name="message" class="input-item-content" placeholder="请输入信息内容"  maxlength="150"></textarea>
+          </view>
+          <view class="input-item input-item-full">
+            <text class="input-item-label">商品位置：</text>
+             <input name="place" class="input-item-content" placeholder="请选取车辆出租/租用位置" maxlength='50' type="text" confirm-type="next" disabled='true' bindtap='getAddress' value='{{address}}'/>
+          </view>   
+          <view class="input-item input-item-full">
+          <text class="input-item-label">商品照片</text>
+            <view class="img-upload">
+              <view class="img-add iconfont icon-tianjiazhuanhuan" bindtap="chooseImg"></view>
+              <view class="img-item" wx:for="{{imgs}}" wx:for-item="item" wx:key="*this">
+                <image src="{{item}}" data-index="{{index}}" mode='aspectFill'  bindtap="previewImg" class="uPicimg" ></image>
+                <view class="delete-btn iconfont icon-delete" data-index="{{index}}" catchtap="deleteImg"></view>
+              </view>
+            </view>
+          </view>
+          <view style=' text-align:right;color:#D7B28E'>*商品照片最多上传9张</view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-submit">
+      <button class="btn-block btn-orange" form-type='submit'>立即发布</button>
+      <!--  bindtap="applySubmit"-->
+    </view>
+  </form>
+     <!-- <loading hidden="{{sunmitHidden}}">
+    正在提交...
+  </loading>    -->
+</view>

@@ -1,0 +1,63 @@
+<import src="../../wxSearch/wxSearch.wxml"/>
+<view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+	<view class="filter-flex">
+		<view class="filter-tab">
+			<text class="{{tabindex == 1?'add-tabing':'add-tab'}}" data-num = "1" bindtap='clickNum'>弃土交易</text>
+			<text class="{{tabindex == 2?'add-tabing':'add-tab'}}" data-num = "2" bindtap='clickNum'>车辆租赁</text>
+		</view>
+    <view class="sea-flex">
+        <view class='message'>今日新增<text class='message-num'>{{tabindex==1?newMessageMuck:newMessageCar}}</text>条消息，共<text class='message-num'>{{tabindex==1?totalMessageMuck:totalMessageCar}}</text>条消息
+        </view>
+        <view class='search iconfont icon-search' bindtap='openSearch'></view>
+    </view>
+    <view class="search-view {{_number == 2?'tab-show':'tab-hide'}}">
+      <!-- 搜素框开始 -->
+      <view class="wxSearch-section">
+        <view class="wxSearch-pancel">
+        <text class='iconfont icon-search' style='position:absolute;top:8rpx;left:20rpx;color:#f7982a;font-size:48rpx;'></text>
+        <input value="{{queryKey}}" bindblur="showQuery" bindinput='inputQuery' class="wxSearch-input" placeholder="请输入查询关键字" placeholder-style='color:#E2D3C2;' />
+        <view class='query-list' wx:if="{{hisQuery}}">
+          <view wx:for="{{hisQuery}}" wx:key="{{index}}" data-index='{{index}}' bindtap='sHisQuery'>
+            <icon type="waiting" size="14" color='#afb3bd' style='margin-top:10rpx;' /> {{item}}
+          </view>
+          <view style='text-align:center' bindtap='clearHisQuery'>清空搜索历史</view>
+        </view>
+          <!-- <button class="wxSearch-button" bindtap="submitSearch" plain="true">查询</button> -->
+        </view>
+      </view>
+      <!--结束  -->
+    </view>
+  </view>
+    <scroll-view class="container-body {{tabindex == 1?'tab-show':'tab-hide'}}" data-num = "1" scroll-y="true" style="height:100%" bindscrolltolower="bindDownLoad" bindscroll="soilscroll">
+        <view class="service-list">
+          <navigator wx:for="{{muckList}}" wx:key="{{item.Id}}"  class="{{item.IsSelf?'service-item-my':'service-item'}}" url="navigate?title=navigate" url="../tradesoil/tradesoil?id={{item.Id}}&IsSelf={{item.IsSelf}}">
+            <view class="service-trade">
+              <view class="{{item.TransType=='售'?'service-shop':'service-gou'}}">
+                <text>{{item.TransType}}</text>
+              </view>
+            </view>
+            <view class="service-text">
+              <view class="service-tite">{{item.Title}}</view>
+              <text class="service-city">{{item.City}}/{{item.SoilType}}</text>
+            </view>
+          </navigator>
+        </view>
+    </scroll-view>
+    <scroll-view class="container-body {{tabindex == 2?'tab-show':'tab-hide'}}" data-num = "2"  scroll-y="true" style="height:100%" bindscrolltolower="bindDownLoad" bindscroll="carscroll">
+        <view class="service-list">
+          <navigator  wx:for="{{carList}}" wx:key="{{item.Id}}" class="{{item.IsSelf?'service-item-my':'service-item'}}" url="navigate?title=navigate" url="../tradecar/tradecar?id={{item.Id}}&titleimg={{item.ShowImg}}&IsSelf={{item.IsSelf}}">
+            <view class="service-trade">
+              <view class="service-img">
+                <image src='{{!!item.ShowImg?item.ShowImg:"../../images/icon_03.png"}}'></image>
+              </view>
+            </view>
+            <view class="service-text">
+              <view class="service-tite">{{item.TransType}}：{{item.Title}}</view>
+              <text class="service-city">{{item.Location}} / {{item.CarType}}</text>
+            </view>
+          </navigator>
+        </view>
+    </scroll-view>
+    <navigator class='bottom-message' url="{{tabindex == 1?'../apply/apply':'../applycar/applycar'}}"><button>免  费  发  布  信  息</button></navigator>
+      <!-- <view class="gototop {{scrolltop>200?'active':''}}" bindtap="goToTop"></view> -->
+</view>
